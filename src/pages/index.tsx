@@ -1,9 +1,11 @@
-import { Inter } from 'next/font/google'
+
+
+import Shelf from '@/components/shelf/Shelf'
 
 export default function Home() {
   return (
     <>
-      Hello
+      <Shelf />
     </>
   )
 }
