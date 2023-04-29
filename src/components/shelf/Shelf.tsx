@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Inter } from 'next/font/google'
 
-const inter = Inter({ weight: ["500", "700"], subsets: ['latin'] })
+const inter = Inter({ weight: ["500", "600", "700"], subsets: ['latin'] })
 
-import { product } from "../../interfaces/product"
+import { parsedProducts, product } from "../../interfaces/product"
 
 import { ShelfWrapper } from './shelf.styled'
 import { SHELFS_URL } from '@/constants'
 import Loader from '../loader/Loader'
+import ProductCard from '../product-card/ProductCard'
 
 const Shelf = () => {
     const [products, setProducts] = useState<product[]>([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
-     function getProducts() {
+    async function getProducts() {
         try {
             setIsLoading(true)
-            setTimeout(async()=>{
-                const rawProducts = await fetch(SHELFS_URL.electronics)
-                const parsedProducts: product[] = await rawProducts.json()
-                setProducts(parsedProducts)    
-                setIsLoading(false)
 
-            },2000)
+            const rawProducts = await fetch(SHELFS_URL.electronics)
+            const parsedProducts: parsedProducts = await rawProducts.json()
+            setProducts(parsedProducts.products)
+
+            setIsLoading(false)
         } catch (error) {
             console.error(error)
             setIsLoading(false)
@@ -33,12 +33,15 @@ const Shelf = () => {
         getProducts()
     }, [])
 
-    return isLoading ? <Loader /> :
-        (
-            <ShelfWrapper className={inter.className}>
-huehue
-            </ShelfWrapper>
-        )
+    return (
+        <ShelfWrapper className={inter.className}>
+            {!isLoading ? (
+                products.map(product => {
+                    return <ProductCard product={product} />
+                })
+            ) : <Loader />}
+        </ShelfWrapper>
+    )
 }
 
 export default Shelf

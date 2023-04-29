@@ -8,6 +8,11 @@ export type product = {
 };
 
 type installmentOption = {
-  foardprice: number;
+  fowardprice: number;
   maxInstallments: number;
 };
+
+
+export type parsedProducts = {
+    products: product[]
+}

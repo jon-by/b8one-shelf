@@ -1,9 +1,11 @@
-import { COLORS } from "@/constants"
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const ShelfWrapper = styled.div`
-width: 100%;
-height: 100%;
-background-color: red;
-
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 20px 128px;
+  flex-wrap: wrap;
+`;
