@@ -1,7 +1,11 @@
+import { useContext } from 'react';
+import { CartContext } from '@/context/CartContext'
+
 import { CheckMark } from "@/icons";
-import { product } from "@/interfaces/product";
 import { toBRL } from "@/utils";
-import React from "react";
+
+import { product } from "@/interfaces/product";
+import { cartContextType } from '@/interfaces/cartContext';
 import {
     CardContainer,
     ImageWrapper,
@@ -17,11 +21,13 @@ import {
 
 type productcardProps = {
     product: product;
-    isIncart?: boolean
+    isIncart: boolean
 };
 
 const ProductCard = ({ product, isIncart = false }: productcardProps) => {
+    const { handleCart } = useContext(CartContext) as cartContextType
     const {
+        id,
         image,
         title,
         listPrice,
@@ -50,7 +56,7 @@ const ProductCard = ({ product, isIncart = false }: productcardProps) => {
                 </InstallmentMessage>
             </PriceWrapper>
 
-            <AddButton isIncart={isIncart}>
+            <AddButton onClick={() => handleCart(id)} isIncart={isIncart}>
                 {isIncart ? (<><CheckMark /> Adicionado</>) : "Adicionar"}
             </AddButton>
 

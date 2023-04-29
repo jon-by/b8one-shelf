@@ -38,12 +38,13 @@ export const Title = styled.p`
   height: 60px;
   font-weight: 500;
   font-size: 14px;
+  margin-top: 32px;
 `;
 
 export const PriceWrapper = styled.div`
-display: flex;
-flex-direction: column;
-gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
 
 export const ListPrice = styled.div`
@@ -61,14 +62,13 @@ export const SellingPrice = styled.div`
 `;
 
 export const InstallmentMessage = styled.p`
-font-size: 12px;
-color: ${COLORS["price-light"]};
-font-weight: 500;
+  font-size: 12px;
+  color: ${COLORS["price-light"]};
+  font-weight: 500;
 
-strong{
-  color: ${COLORS["font-default"]};
-  
-}
+  strong {
+    color: ${COLORS["font-default"]};
+  }
 `;
 
 type addButtonProps = {
@@ -88,13 +88,13 @@ export const AddButton = styled.button<addButtonProps>`
   border: none;
   border-radius: 5px;
   background-color: ${({ isIncart }) =>
-    isIncart ? COLORS["buy-button"] : COLORS["buy-button-added"]};
-  color: ${COLORS.white};
+    isIncart ? COLORS["buy-button-added"] : COLORS["buy-button"]};
+  color: ${({isIncart})=> isIncart? COLORS["font-default"]: COLORS.white };
   text-transform: uppercase;
-  cursor: pointer;
+  cursor:${({isIncart})=> isIncart? "default":"pointer"};
   transition: background-color 200ms ease-in-out;
 
   &:hover {
-    background-color: ${COLORS["buy-button-hover"]};
+    background-color: ${({isIncart})=> isIncart? "none": COLORS["buy-button-hover"]};
   }
 `;
