@@ -9,7 +9,6 @@ import { cartContextType } from '@/interfaces/cartContext';
 import {
     CardContainer,
     ImageWrapper,
-    WishListContainer,
     Title,
     PriceWrapper,
     ListPrice,
@@ -17,11 +16,12 @@ import {
     InstallmentMessage,
     AddButton,
 } from "./productCard.styled";
+import WishList from '../wish-list/WishList';
 
 
 type productcardProps = {
     product: product;
-    isIncart: boolean
+    isIncart: boolean;
 };
 
 const ProductCard = ({ product, isIncart = false }: productcardProps) => {
@@ -39,7 +39,7 @@ const ProductCard = ({ product, isIncart = false }: productcardProps) => {
         <CardContainer>
             <ImageWrapper>
                 <img src={image} width={240} height={240} alt={title} />
-                <WishListContainer />
+                <WishList id={id} />
             </ImageWrapper>
 
             <Title>{title}</Title>

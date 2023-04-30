@@ -23,15 +23,6 @@ export const ImageWrapper = styled.div`
   }
 `;
 
-export const WishListContainer = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: ${COLORS["shelf-bg"]};
-`;
 
 export const Title = styled.p`
   width: 240px;
@@ -87,13 +78,12 @@ export const AddButton = styled.button<addButtonProps>`
   line-height: 24px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ isIncart }) =>
-    isIncart ? COLORS["buy-button-added"] : COLORS["buy-button"]};
+  background-color: ${({ isIncart }) =>isIncart ? COLORS["buy-button-added"] : COLORS["buy-button"]};    
   color: ${({isIncart})=> isIncart? COLORS["font-default"]: COLORS.white };
   text-transform: uppercase;
   cursor:${({isIncart})=> isIncart? "default":"pointer"};
   transition: background-color 200ms ease-in-out;
-
+  pointer-events: ${({isIncart}) => isIncart? "none" : "all"};
   &:hover {
     background-color: ${({isIncart})=> isIncart? "none": COLORS["buy-button-hover"]};
   }

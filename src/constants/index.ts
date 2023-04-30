@@ -12,5 +12,13 @@ export const COLORS = {
     "selling-price": "#DA4B4F",
     "font-default": "#1C1C1C",
     "price-light": "#B5B5B6",
-    "white": "#ffffff"
+    "white": "#ffffff",
+    "wish-list-default": "#F2F3F6",
+    "wish-List-bg-hover": "#FEE5EC",
+    "wish-List-bg-added": "#DA4B4F",
+    "wish-list-path-hover": "#DA4B4F",
+    "wish-list-path-added-hover": "#C22539",
+    "wish-list-stroke-default": "#1C1C1C",
+    
+    
 }
