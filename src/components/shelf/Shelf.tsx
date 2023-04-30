@@ -8,48 +8,68 @@ import Loader from "../loader/Loader";
 import { ShelfWrapper } from "./shelf.styled";
 import { SHELFS_URL } from "@/constants";
 
-
 import { parsedProducts, product } from "../../interfaces/product";
 
 const Shelf = () => {
-    const [products, setProducts] = useState<product[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState<product[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    async function getProducts() {
-        try {
-            setIsLoading(true);
+  async function getProducts() {
+    try {
+      setIsLoading(true);
 
-            const rawProducts = await fetch(SHELFS_URL.electronics);
-            const parsedProducts: parsedProducts = await rawProducts.json();
-            setProducts(parsedProducts.products);
+      const rawProducts = await fetch(SHELFS_URL.electronics);
+      const parsedProducts: parsedProducts = await rawProducts.json();
+      setProducts(parsedProducts.products);
 
-            setIsLoading(false);
-        } catch (error) {
-            console.error(error);
-            setIsLoading(false);
-        }
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+      console.error(error);
+      setIsLoading(false);
     }
+  }
 
-    useEffect(() => {
-        getProducts();
-    }, []);
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-    return (
-        <ShelfWrapper className={inter.className}>
-            {!isLoading ? (
-                products.map((product) => {
-                    return (
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                        />
-                    );
-                })
-            ) : (
-                <Loader />
-            )}
-        </ShelfWrapper>
-    );
+  const ShelfRender = () => {
+    switch (true) {
+      case error:
+        return (
+          <ShelfWrapper className={inter.className}>
+            <h2>Oops! Algo deu errado, por favor, tente novamente. </h2>
+          </ShelfWrapper>
+        );
+      case isLoading:
+        return (
+          <ShelfWrapper className={inter.className}>
+            <Loader />
+          </ShelfWrapper>
+        );
+
+      case typeof products !== null && products!.length < 1:
+        return (
+          <ShelfWrapper className={inter.className}>
+            <h2>Oops! Não encontramos produtos </h2>
+          </ShelfWrapper>
+        );
+
+      default:
+        return (
+          <ShelfWrapper className={inter.className}>
+            {products !== null &&
+              products.map((product) => {
+                return <ProductCard key={product.id} product={product} />;
+              })}
+          </ShelfWrapper>
+        );
+    }
+  };
+
+  return <ShelfRender />;
 };
 
 export default Shelf;
