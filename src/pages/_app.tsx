@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import { GlobalStyle } from './app.styled'
+import { GlobalStyle } from './_app.styled'
 
 import CartProvider from '@/context/ShelfContext'
 
