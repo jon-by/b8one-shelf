@@ -3,11 +3,11 @@ import { shelfContextType } from '@/interfaces/shelfContext'
 
 export const ShelfContext = createContext<shelfContextType | null>(null)
 
-type cartProviderProps = {
+type shelfProviderProps = {
     children: React.ReactNode
 }
 
-const ShelfProvider = ({ children }: cartProviderProps) => {
+const ShelfProvider = ({ children }: shelfProviderProps) => {
     const [cartIds, setCartIds] = useState<number[]>([])
     const [wishListIds, setWishListIds] = useState<number[]>([])
 
