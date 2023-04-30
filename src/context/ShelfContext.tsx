@@ -1,17 +1,17 @@
-import { createContext, useEffect, useState } from 'react'
-import { cartContextType } from '@/interfaces/cartContext'
+import { createContext, useState } from 'react'
+import { shelfContextType } from '@/interfaces/shelfContext'
 
-export const CartContext = createContext<cartContextType | null>(null)
+export const ShelfContext = createContext<shelfContextType | null>(null)
 
 type cartProviderProps = {
     children: React.ReactNode
 }
 
-const CartProvider = ({ children }: cartProviderProps) => {
+const ShelfProvider = ({ children }: cartProviderProps) => {
     const [cartIds, setCartIds] = useState<number[]>([])
     const [wishListIds, setWishListIds] = useState<number[]>([])
 
-    function handleCart(id: number) {
+    function addOrRemoveCartItens(id: number) {
         const currentIds = [...cartIds]
 
         const index = currentIds.indexOf(id)
@@ -21,7 +21,7 @@ const CartProvider = ({ children }: cartProviderProps) => {
         setCartIds(currentIds)
     }
 
-    function handleWishList(id: number) {
+    function addOrRemoveWishListItens(id: number) {
         const currentIds = [...wishListIds]
 
         const index = currentIds.indexOf(id)
@@ -32,11 +32,11 @@ const CartProvider = ({ children }: cartProviderProps) => {
     }
 
     return (
-        <CartContext.Provider value={{ cartIds, handleCart, wishListIds, handleWishList }} >
+        <ShelfContext.Provider value={{ cartIds, addOrRemoveCartItens, wishListIds, addOrRemoveWishListItens }} >
             {children}
-        </CartContext.Provider>
+        </ShelfContext.Provider>
     )
 }
 
 
-export default CartProvider
+export default ShelfProvider

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
-import { CartContext } from '@/context/CartContext'
-import { cartContextType } from '@/interfaces/cartContext';
+import { ShelfContext } from '@/context/ShelfContext'
+import { shelfContextType } from '@/interfaces/shelfContext';
 
 import { WishListIcon } from '@/icons'
 import { WishListContainer } from './wishList.styled'
@@ -12,10 +12,14 @@ type wishListprops = {
 
 const WishList = ({ id }: wishListprops) => {
 
-    const { wishListIds, handleWishList } = useContext(CartContext) as cartContextType;
+    const { wishListIds, addOrRemoveWishListItens } = useContext(ShelfContext) as shelfContextType;
+
+    function handleWishListClick(){
+        addOrRemoveWishListItens(id)
+    }
     
     return (
-        <WishListContainer onClick={()=> handleWishList(id)} inWishList={wishListIds.includes(id)}>
+        <WishListContainer onClick={handleWishListClick} inWishList={wishListIds.includes(id)}>
             <WishListIcon />
         </WishListContainer>
     )

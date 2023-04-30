@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { CartContext } from '@/context/CartContext'
+import { ShelfContext } from '@/context/ShelfContext'
 
 import { CheckMark } from "@/icons";
 import { toBRL } from "@/utils";
 
 import { product } from "@/interfaces/product";
-import { cartContextType } from '@/interfaces/cartContext';
+import { shelfContextType } from '@/interfaces/shelfContext';
 import {
     CardContainer,
     ImageWrapper,
@@ -21,11 +21,11 @@ import WishList from '../wish-list/WishList';
 
 type productcardProps = {
     product: product;
-    isIncart: boolean;
+
 };
 
-const ProductCard = ({ product, isIncart = false }: productcardProps) => {
-    const { handleCart } = useContext(CartContext) as cartContextType
+const ProductCard = ({ product }: productcardProps) => {
+    const { addOrRemoveCartItens, cartIds } = useContext(ShelfContext) as shelfContextType
     const {
         id,
         image,
@@ -34,6 +34,12 @@ const ProductCard = ({ product, isIncart = false }: productcardProps) => {
         sellingPrice,
         installmentsOptions: { fowardprice, maxInstallments },
     } = product;
+
+    const isInCart = cartIds.includes(id)
+
+    function handleAddOrRemoveButton() {
+        addOrRemoveCartItens(id)
+    }
 
     return (
         <CardContainer>
@@ -56,8 +62,8 @@ const ProductCard = ({ product, isIncart = false }: productcardProps) => {
                 </InstallmentMessage>
             </PriceWrapper>
 
-            <AddButton onClick={() => handleCart(id)} isIncart={isIncart}>
-                {isIncart ? (<><CheckMark /> Adicionado</>) : "Adicionar"}
+            <AddButton onClick={handleAddOrRemoveButton} isIncart={isInCart}>
+                {isInCart ? (<><CheckMark /> Adicionado</>) : "Adicionar"}
             </AddButton>
 
         </CardContainer>

@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { CartContext } from "@/context/CartContext";
-
+import React, { useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 const inter = Inter({ weight: ["500", "600", "700"], subsets: ["latin"] });
 
@@ -10,11 +8,10 @@ import Loader from "../loader/Loader";
 import { ShelfWrapper } from "./shelf.styled";
 import { SHELFS_URL } from "@/constants";
 
-import { cartContextType } from "@/interfaces/cartContext";
+
 import { parsedProducts, product } from "../../interfaces/product";
 
 const Shelf = () => {
-    const { cartIds } = useContext(CartContext) as cartContextType;
     const [products, setProducts] = useState<product[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -43,7 +40,6 @@ const Shelf = () => {
                 products.map((product) => {
                     return (
                         <ProductCard
-                            isIncart={cartIds.includes(product.id)}
                             key={product.id}
                             product={product}
                         />
