@@ -1,6 +1,6 @@
 export const SHELFS_URL = {
   electronics:
-    "https://gist.githubusercontent.com/jon-by/7bd4187f84e46f1ba7cf24d82d966e29/raw/a08ddadd6d34ee1edd79424d6a3f3fcc646064d4/shelf.json",
+    "https://gist.githubusercontent.com/jon-by/7bd4187f84e46f1ba7cf24d82d966e29/raw/5f42a3fe74e7b2ab3769de77d90b58914c4cdbf1/shelf.json",
 };
 
 export const COLORS = {
@@ -18,7 +18,6 @@ export const COLORS = {
     "wish-List-bg-added": "#DA4B4F",
     "wish-list-path-hover": "#DA4B4F",
     "wish-list-path-added-hover": "#C22539",
-    "wish-list-stroke-default": "#1C1C1C",
-    
+    "wish-list-stroke-default": "#1C1C1C",   
     
 }

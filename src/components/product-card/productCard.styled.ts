@@ -81,9 +81,8 @@ export const AddButton = styled.button<addButtonProps>`
   background-color: ${({ isIncart }) =>isIncart ? COLORS["buy-button-added"] : COLORS["buy-button"]};    
   color: ${({isIncart})=> isIncart? COLORS["font-default"]: COLORS.white };
   text-transform: uppercase;
-  cursor:${({isIncart})=> isIncart? "default":"pointer"};
-  transition: background-color 200ms ease-in-out;
-  pointer-events: ${({isIncart}) => isIncart? "none" : "all"};
+  cursor:pointer;
+  transition: background-color 200ms ease-in-out;  
   &:hover {
     background-color: ${({isIncart})=> isIncart? "none": COLORS["buy-button-hover"]};
   }

@@ -48,7 +48,7 @@ const ProductCard = ({ product, isIncart = false }: productcardProps) => {
                 <ListPrice>{toBRL(listPrice)}</ListPrice>
                 <SellingPrice>{toBRL(sellingPrice)}</SellingPrice>
                 <InstallmentMessage>
-                    em até
+                    em até{" "}
                     <strong>
                         {maxInstallments}x de {toBRL(fowardprice)}
                     </strong>{" "}

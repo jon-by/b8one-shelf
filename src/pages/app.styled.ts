@@ -10,8 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
 body{
     background-color: ${COLORS["shelf-bg"]};
-
+    padding: 16px;
 }
-
 
 `

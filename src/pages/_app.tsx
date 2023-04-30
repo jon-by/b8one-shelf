@@ -7,8 +7,7 @@ import CartProvider from '@/context/CartContext'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <CartProvider>
-      <GlobalStyle />
-      <div>Header</div>
+      <GlobalStyle />      
       <Component {...pageProps} />
     </CartProvider>
   )

@@ -13,6 +13,7 @@ type wishListprops = {
 const WishList = ({ id }: wishListprops) => {
 
     const { wishListIds, handleWishList } = useContext(CartContext) as cartContextType;
+    
     return (
         <WishListContainer onClick={()=> handleWishList(id)} inWishList={wishListIds.includes(id)}>
             <WishListIcon />
