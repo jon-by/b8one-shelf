@@ -3,25 +3,20 @@ import { ShelfContext } from '@/context/ShelfContext'
 
 import { CheckMark } from "@/icons";
 import { toBRL } from "@/utils";
+import WishList from '../wish-list/WishList';
 
 import { product } from "@/interfaces/product";
 import { shelfContextType } from '@/interfaces/shelfContext';
 import {
     CardContainer,
     ImageWrapper,
-    Title,
-    PriceWrapper,
-    ListPrice,
-    SellingPrice,
-    InstallmentMessage,
-    AddButton,
+    Title
 } from "./productCard.styled";
-import WishList from '../wish-list/WishList';
-
+import Price from './Price';
+import CartButton from '../button/CartButton';
 
 type productcardProps = {
     product: product;
-
 };
 
 const ProductCard = ({ product }: productcardProps) => {
@@ -50,21 +45,11 @@ const ProductCard = ({ product }: productcardProps) => {
 
             <Title>{title}</Title>
 
-            <PriceWrapper>
-                <ListPrice>{toBRL(listPrice)}</ListPrice>
-                <SellingPrice>{toBRL(sellingPrice)}</SellingPrice>
-                <InstallmentMessage>
-                    em até{" "}
-                    <strong>
-                        {maxInstallments}x de {toBRL(fowardprice)}
-                    </strong>{" "}
-                    {sellingPrice === fowardprice && "sem juros"}
-                </InstallmentMessage>
-            </PriceWrapper>
+            <Price {...{ listPrice, sellingPrice, fowardprice, maxInstallments }} />
 
-            <AddButton onClick={handleAddOrRemoveButton} isIncart={isInCart}>
-                {isInCart ? (<><CheckMark /> Adicionado</>) : "Adicionar"}
-            </AddButton>
+            <CartButton icon={<CheckMark />} isInCart={isInCart} onClick={handleAddOrRemoveButton}>
+                {isInCart ? "Adicionado" : "Adicionar"}
+            </CartButton>
 
         </CardContainer>
     );
