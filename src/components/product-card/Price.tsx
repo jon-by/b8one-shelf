@@ -24,7 +24,7 @@ const Price = ({ fowardprice, listPrice, maxInstallments, sellingPrice }: priceP
             <InstallmentMessage>
                 em até{" "}
                 <strong>
-                    {maxInstallments}x de {toBRL(fowardprice)}
+                    {maxInstallments}x de {toBRL(fowardprice / maxInstallments)}
                 </strong>{" "}
                 {sellingPrice === fowardprice && "sem juros"}
             </InstallmentMessage>
